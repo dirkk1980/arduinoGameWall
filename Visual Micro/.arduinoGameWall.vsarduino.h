@@ -41,6 +41,7 @@ extern "C" void __cxa_pure_virtual() {;}
 
 //
 //
+void pyramid(byte lData[]);
 
 #include "C:\development\ide\arduino-1.0.5-r2\hardware\arduino\cores\arduino\arduino.h"
 #include "C:\development\ide\arduino-1.0.5-r2\hardware\arduino\variants\standard\pins_arduino.h" 
