@@ -73,7 +73,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MatrixController.h" />
     <ClInclude Include="Visual Micro\.arduinoGameWall.vsarduino.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MatrixController.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
