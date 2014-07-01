@@ -11,13 +11,11 @@
 
 class MatrixControllerClass
 {
-protected:
-
-
 public:
 	void init(short latchPin, short clockPin, short dataPin);
 	void setPixel(short xPos, short yPos);
 	void update();
+	static const short MATRIX_SIZE = 4;
 
 private:
 	short latchPin;
