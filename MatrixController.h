@@ -25,6 +25,8 @@ private:
 	short j;
 	bool ledStatus[4][4];
 	byte dataToSend;
+	short lastActiveI;
+	short lastActiveJ;
 };
 
 extern MatrixControllerClass MatrixController;
