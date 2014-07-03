@@ -8,34 +8,41 @@ void MatrixControllerClass::init(short latchPin, short clockPin, short dataPin)
 	pinMode(latchPin, OUTPUT);
 	pinMode(clockPin, OUTPUT);
 	pinMode(dataPin, OUTPUT);
-	lastActiveI = -1;
-	lastActiveJ = -1;
-	for (i = 0; i < MATRIX_SIZE; i++){
-		for (j = 0; j < MATRIX_SIZE; j++){
-			ledStatus[i][j] = false;
+	lastActiveRow = -1;
+	lastActiveCol = -1;
+	for (rowIndex = 0; rowIndex < MATRIX_SIZE; rowIndex++){
+		for (colIndex = 0; colIndex < MATRIX_SIZE; colIndex++){
+			ledStatus[rowIndex][colIndex] = false;
 		}
 	}
 }
 
 MatrixControllerClass MatrixController;
 
-void MatrixControllerClass::setPixel(short xPos, short yPos)
+void MatrixControllerClass::setPixel(short rowPos, short colPos)
 {
-	ledStatus[xPos][yPos] = true;
+	ledStatus[rowPos][colPos] = true;
 }
 
 void MatrixControllerClass::update()
 {
-
-	for (i = 0; i < MATRIX_SIZE; i++){
-		for (j = 0; j < MATRIX_SIZE; j++){
-			if (ledStatus[i][j] == true && (i > lastActiveI || j > lastActiveJ))
+	if (lastActiveRow > 0 )
+	{
+		rowIndex = lastActiveRow;
+	}
+	else
+	{
+		rowIndex = 0;
+	}
+	for (rowIndex; rowIndex < MATRIX_SIZE; rowIndex++){
+		for (colIndex = 0; colIndex < MATRIX_SIZE; colIndex++){
+			if (ledStatus[rowIndex][colIndex] == true && (rowIndex > lastActiveRow || colIndex > lastActiveCol))
 			{
 				dataToSend = B11110000;
-				bitWrite(dataToSend, i, 1);
-				bitWrite(dataToSend, j + MATRIX_SIZE, 0);
-				lastActiveI = i;
-				lastActiveJ = j;
+				bitWrite(dataToSend, rowIndex, 1);
+				bitWrite(dataToSend, colIndex + MATRIX_SIZE, 0);
+				lastActiveRow = rowIndex;
+				lastActiveCol = colIndex;
 				digitalWrite(latchPin, LOW);
 				shiftOut(dataPin, clockPin, MSBFIRST, dataToSend);
 				digitalWrite(latchPin, HIGH);
@@ -44,7 +51,6 @@ void MatrixControllerClass::update()
 		}
 	}
 	// loop do not execute return, so array was searched complete
-	lastActiveI = -1;
-	lastActiveJ = -1;
-
+	lastActiveRow = -1;
+	lastActiveCol = -1;
 }

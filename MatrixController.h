@@ -21,12 +21,12 @@ private:
 	short latchPin;
 	short clockPin;
 	short dataPin;
-	short i;
-	short j;
+	short rowIndex;
+	short colIndex;
 	bool ledStatus[4][4];
 	byte dataToSend;
-	short lastActiveI;
-	short lastActiveJ;
+	short lastActiveRow;
+	short lastActiveCol;
 };
 
 extern MatrixControllerClass MatrixController;

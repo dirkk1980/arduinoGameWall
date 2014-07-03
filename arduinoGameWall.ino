@@ -32,6 +32,7 @@ void setup()
 			MatrixController.setPixel(i, j);
 		}
 	}
+	//MatrixController.setPixel(1, 3);
 }
 
 void loop()
@@ -56,7 +57,7 @@ void loop()
 		//MatrixController.setPixel(snake.posX, snake.posY);
 	}
 	MatrixController.update();
-	delay(500);
+	delay(100);
 }
 
 
