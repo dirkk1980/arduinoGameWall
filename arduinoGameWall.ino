@@ -1,5 +1,4 @@
 #include "MatrixController.h"
-#include "SnakeModel.h";
 
 const short BUTTON_UP_PIN = 2;
 const short BUTTON_DOWN_PIN = 4;
@@ -16,8 +15,6 @@ bool buttonRightState = false;
 short i;
 short j;
 
-SnakeModel snake;
-
 void setup()
 {
 	pinMode(BUTTON_UP_PIN, INPUT);
@@ -32,7 +29,6 @@ void setup()
 			MatrixController.setPixel(i, j);
 		}
 	}
-	//MatrixController.setPixel(1, 3);
 }
 
 void loop()
@@ -53,8 +49,6 @@ void loop()
 	}
 	if (buttonUpState == HIGH)
 	{
-		//snake.posX++;
-		//MatrixController.setPixel(snake.posX, snake.posY);
 	}
 	MatrixController.update();
 	delay(100);
