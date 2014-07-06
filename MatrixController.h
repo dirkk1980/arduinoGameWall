@@ -11,6 +11,7 @@
 
 class MatrixControllerClass
 {
+
 public:
 	void init(short latchPin, short clockPin, short dataPin);
 	void setPixel(short xPos, short yPos);
@@ -18,15 +19,17 @@ public:
 	static const short MATRIX_SIZE = 4;
 
 private:
+	struct Pixel
+	{
+		bool on;
+		bool rendered;
+	};
 	short latchPin;
 	short clockPin;
 	short dataPin;
-	short rowIndex;
-	short colIndex;
-	bool ledStatus[4][4];
+	Pixel pixels[MATRIX_SIZE][MATRIX_SIZE];
 	byte dataToSend;
-	short lastActiveRow;
-	short lastActiveCol;
+	short remainingPixels;
 };
 
 extern MatrixControllerClass MatrixController;

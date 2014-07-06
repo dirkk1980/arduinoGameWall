@@ -10,11 +10,6 @@ bool buttonDownState = false;
 bool buttonLeftState = false;
 bool buttonRightState = false;
 
-
-//looping variables
-short i;
-short j;
-
 void setup()
 {
 	pinMode(BUTTON_UP_PIN, INPUT);
@@ -24,16 +19,16 @@ void setup()
 
 	MatrixController.init(A1, A0, A2);
 
-	for (i = 0; i < 4; i++){
-		for (j = 0; j < 4; j++){
-			MatrixController.setPixel(i, j);
-		}
-	}
+	MatrixController.setPixel(0, 0);
+	MatrixController.setPixel(1, 1);
+	MatrixController.setPixel(1, 3);
+	MatrixController.setPixel(2, 2);
+	MatrixController.setPixel(3, 1);
+	MatrixController.setPixel(3, 2);
 }
 
 void loop()
 {
-
 	buttonUpState = digitalRead(BUTTON_UP_PIN);
 	buttonDownState = digitalRead(BUTTON_DOWN_PIN);
 	buttonLeftState = digitalRead(BUTTON_LEFT_PIN);
@@ -51,7 +46,7 @@ void loop()
 	{
 	}
 	MatrixController.update();
-	delay(100);
+	delay(50);
 }
 
 

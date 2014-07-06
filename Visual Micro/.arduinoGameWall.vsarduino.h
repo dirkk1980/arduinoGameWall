@@ -47,6 +47,4 @@ extern "C" void __cxa_pure_virtual() {;}
 #include "C:\development\workspace\arduino\visualStudio\arduinoGameWall\arduinoGameWall.ino"
 #include "C:\development\workspace\arduino\visualStudio\arduinoGameWall\MatrixController.cpp"
 #include "C:\development\workspace\arduino\visualStudio\arduinoGameWall\MatrixController.h"
-#include "C:\development\workspace\arduino\visualStudio\arduinoGameWall\SnakeModel.cpp"
-#include "C:\development\workspace\arduino\visualStudio\arduinoGameWall\SnakeModel.h"
 #endif
