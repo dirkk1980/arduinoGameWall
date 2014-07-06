@@ -21,7 +21,7 @@ MatrixControllerClass MatrixController;
 
 void MatrixControllerClass::setPixel(short row, short col)
 {
-	pixels[row][col] = true;
+	pixels[row][col].on = true;
 }
 
 void MatrixControllerClass::update()
@@ -55,7 +55,7 @@ void MatrixControllerClass::update()
 				{
 					pixels[i][j].rendered = true;
 				}
-		
+
 				dataToSend = B11110000;
 				bitWrite(dataToSend, i, 1);
 				bitWrite(dataToSend, j + MATRIX_SIZE, 0);

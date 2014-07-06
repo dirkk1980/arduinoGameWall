@@ -19,12 +19,7 @@ void setup()
 
 	MatrixController.init(A1, A0, A2);
 
-	MatrixController.setPixel(0, 0);
-	MatrixController.setPixel(1, 1);
-	MatrixController.setPixel(1, 3);
-	MatrixController.setPixel(2, 2);
-	MatrixController.setPixel(3, 1);
-	MatrixController.setPixel(3, 2);
+	MatrixController.setPixel(2,2);
 }
 
 void loop()
@@ -35,18 +30,21 @@ void loop()
 	buttonRightState = digitalRead(BUTTON_RIGHT_PIN);
 	if (buttonLeftState == HIGH)
 	{
+		MatrixController.setPixel(2, 3);
 	}
 	if (buttonDownState == HIGH)
 	{
+		MatrixController.setPixel(3, 2);
 	}
 	if (buttonRightState == HIGH)
 	{
+		MatrixController.setPixel(2, 1);
 	}
 	if (buttonUpState == HIGH)
 	{
+		MatrixController.setPixel(1,2);
 	}
 	MatrixController.update();
-	delay(50);
 }
 
 
