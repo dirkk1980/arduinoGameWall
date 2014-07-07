@@ -73,11 +73,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AtariJoystickController.h" />
     <ClInclude Include="MatrixController.h" />
     <ClInclude Include="SnakeModel.h" />
     <ClInclude Include="Visual Micro\.arduinoGameWall.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AtariJoystickController.cpp" />
     <ClCompile Include="MatrixController.cpp" />
     <ClCompile Include="SnakeModel.cpp" />
   </ItemGroup>

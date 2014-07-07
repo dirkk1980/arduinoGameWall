@@ -45,6 +45,8 @@ extern "C" void __cxa_pure_virtual() {;}
 #include "C:\development\ide\arduino-1.0.5-r2\hardware\arduino\cores\arduino\arduino.h"
 #include "C:\development\ide\arduino-1.0.5-r2\hardware\arduino\variants\standard\pins_arduino.h" 
 #include "C:\development\workspace\arduino\visualStudio\arduinoGameWall\arduinoGameWall.ino"
+#include "C:\development\workspace\arduino\visualStudio\arduinoGameWall\AtariJoystickController.cpp"
+#include "C:\development\workspace\arduino\visualStudio\arduinoGameWall\AtariJoystickController.h"
 #include "C:\development\workspace\arduino\visualStudio\arduinoGameWall\MatrixController.cpp"
 #include "C:\development\workspace\arduino\visualStudio\arduinoGameWall\MatrixController.h"
 #include "C:\development\workspace\arduino\visualStudio\arduinoGameWall\SnakeModel.cpp"
