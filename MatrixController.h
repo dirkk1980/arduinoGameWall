@@ -14,22 +14,18 @@ class MatrixControllerClass
 
 public:
 	void init(short latchPin, short clockPin, short dataPin);
-	void setPixel(short xPos, short yPos);
+	void setPixel(short rowIndex, short coLIndex, bool status);
 	void update();
+	void clearAll();
 	static const short MATRIX_SIZE = 4;
 
 private:
-	struct Pixel
-	{
-		bool on;
-		bool rendered;
-	};
 	short latchPin;
 	short clockPin;
 	short dataPin;
-	Pixel pixels[MATRIX_SIZE][MATRIX_SIZE];
+	bool pixels[MATRIX_SIZE][MATRIX_SIZE];
 	byte dataToSend;
-	short remainingPixels;
+	short lastRenderedRow;
 };
 
 extern MatrixControllerClass MatrixController;

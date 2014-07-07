@@ -1,4 +1,5 @@
 #include "MatrixController.h"
+#include "SnakeModel.h"
 
 const short BUTTON_UP_PIN = 2;
 const short BUTTON_DOWN_PIN = 4;
@@ -10,6 +11,10 @@ bool buttonDownState = false;
 bool buttonLeftState = false;
 bool buttonRightState = false;
 
+bool buttonPressed = false;
+
+SnakeModel snakeModel;
+
 void setup()
 {
 	pinMode(BUTTON_UP_PIN, INPUT);
@@ -19,7 +24,9 @@ void setup()
 
 	MatrixController.init(A1, A0, A2);
 
-	MatrixController.setPixel(2,2);
+	snakeModel.matrixSize = 4;
+	snakeModel.setPos(2,2);
+	MatrixController.setPixel(snakeModel.posX, snakeModel.posY, true);
 }
 
 void loop()
@@ -28,23 +35,40 @@ void loop()
 	buttonDownState = digitalRead(BUTTON_DOWN_PIN);
 	buttonLeftState = digitalRead(BUTTON_LEFT_PIN);
 	buttonRightState = digitalRead(BUTTON_RIGHT_PIN);
-	if (buttonLeftState == HIGH)
+	
+	if (buttonLeftState == HIGH || buttonDownState == HIGH || buttonRightState == HIGH || buttonUpState == HIGH)
 	{
-		MatrixController.setPixel(2, 3);
+		if (buttonPressed == false)
+		{
+			if (buttonLeftState == HIGH)
+			{
+				snakeModel.moveLeft();
+			}
+			if (buttonDownState == HIGH)
+			{
+				snakeModel.moveDown();
+			}
+			if (buttonRightState == HIGH)
+			{
+				snakeModel.moveRight();
+			}
+			if (buttonUpState == HIGH)
+			{
+				snakeModel.moveUp();
+			}
+			buttonPressed = true;
+		}
 	}
-	if (buttonDownState == HIGH)
+	else
 	{
-		MatrixController.setPixel(3, 2);
+		buttonPressed = false;
 	}
-	if (buttonRightState == HIGH)
-	{
-		MatrixController.setPixel(2, 1);
-	}
-	if (buttonUpState == HIGH)
-	{
-		MatrixController.setPixel(1,2);
-	}
+
+	
+	MatrixController.clearAll();
+	MatrixController.setPixel(snakeModel.posX, snakeModel.posY, true);
 	MatrixController.update();
+	delay(4);
 }
 
 
