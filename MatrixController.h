@@ -9,26 +9,26 @@
 #include "WProgram.h"
 #endif
 
-class MatrixControllerClass
+class MatrixController
 {
-
 public:
-	void init(short latchPin, short clockPin, short dataPin);
+	struct PinSetting
+	{
+		byte latchPin;
+		byte clockPin;
+		byte dataPin;
+	};
+	void init(PinSetting pinSetting);
 	void setPixel(short rowIndex, short coLIndex, bool status);
 	void update();
 	void clearAll();
 	static const short MATRIX_SIZE = 4;
 
 private:
-	short latchPin;
-	short clockPin;
-	short dataPin;
 	bool pixels[MATRIX_SIZE][MATRIX_SIZE];
 	byte dataToSend;
 	short lastRenderedRow;
+	PinSetting pinSetting;
 };
-
-extern MatrixControllerClass MatrixController;
-
 #endif
 

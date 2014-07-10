@@ -1,24 +1,35 @@
-// AtariJoystickController.h
-
 #ifndef _ATARIJOYSTICKCONTROLLER_h
 #define _ATARIJOYSTICKCONTROLLER_h
 
+#include "SnakeModel.h"
 #if defined(ARDUINO) && ARDUINO >= 100
-	#include "Arduino.h"
+#include "Arduino.h"
 #else
-	#include "WProgram.h"
+#include "WProgram.h"
 #endif
 
-class AtariJoystickControllerClass
+class AtariJoystickController
 {
- protected:
 
-
- public:
-	 void init(short pinUp, short pinDown, short pinLeft, short pinRight);
+public:
+	AtariJoystickController();
+	struct PinSetting
+	{
+		byte pinUp;
+		byte pinDown;
+		byte pinLeft;
+		byte pinRight;
+	};
+	void init(PinSetting pinSetting,SnakeModel model);
+	void update();
+private:
+	SnakeModel model;
+	PinSetting pinSetting;
+	bool buttonUpState;
+	bool buttonDownState;
+	bool buttonLeftState;
+	bool buttonRightState;
+	bool buttonPressed;
 };
-
-extern AtariJoystickControllerClass AtariJoystickController;
-
 #endif
 

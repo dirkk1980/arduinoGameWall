@@ -2,61 +2,60 @@
 
 SnakeModel::SnakeModel()
 {
-
+	pSnakeHead = &snakeElements[0];
 }
-
 
 SnakeModel::~SnakeModel()
 {
 }
 
-void SnakeModel::setPos(short xPos, short yPos)
+void SnakeModel::setPos(byte rowIndex, byte colIndex)
 {
-	this->posX = xPos;
-	this->posY = yPos;
+	pSnakeHead->rowIndex = rowIndex;
+	pSnakeHead->colIndex = colIndex;
 }
 
 void SnakeModel::moveUp()
 {
-	if (posX == 0)
+	if (pSnakeHead->rowIndex == 0)
 	{
-		posX = matrixSize - 1;
+		pSnakeHead->rowIndex = MATRIX_SIZE - 1;
 	}
 	else
 	{
-		posX = posX--;
+		pSnakeHead->rowIndex = pSnakeHead->rowIndex--;
 	}
 }
 void SnakeModel::moveDown()
 {
-	if (posX == matrixSize - 1)
+	if (pSnakeHead->rowIndex == MATRIX_SIZE - 1)
 	{
-		posX = 0;
+		pSnakeHead->rowIndex = 0;
 	}
 	else
 	{
-		posX++;
+		pSnakeHead->rowIndex++;
 	}
 }
 void SnakeModel::moveRight()
 {
-	if (posY == 0)
+	if (pSnakeHead->colIndex == 0)
 	{
-		posY = matrixSize -1;
+		pSnakeHead->colIndex = MATRIX_SIZE - 1;
 	}
 	else
 	{
-		posY--;
+		pSnakeHead->colIndex--;
 	}
 }
 void SnakeModel::moveLeft()
 {
-	if (posY == matrixSize - 1)
+	if (pSnakeHead->colIndex == MATRIX_SIZE - 1)
 	{
-		posY = 0;
+		pSnakeHead->colIndex = 0;
 	}
 	else
 	{
-		posY++;
+		pSnakeHead->colIndex++;
 	}
 }
