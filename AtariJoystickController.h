@@ -15,10 +15,9 @@ public:
 	AtariJoystickController();
 	struct PinSetting
 	{
-		byte pinUp;
-		byte pinDown;
-		byte pinLeft;
-		byte pinRight;
+		byte pinSerialIn;
+		byte pinCP;
+		byte pinPL;
 	};
 	void init(PinSetting pinSetting,SnakeModel model);
 	void update();
