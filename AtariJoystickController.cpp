@@ -35,7 +35,7 @@ void AtariJoystickController::init(PinSetting pinSetting, SnakeModel model)
 		//reset "load" line, this freezes the internal buffer on both chips
 		digitalWrite(pinSetting.pinPL, HIGH);
 
-		for (j = 0; j < 16; j++)
+		for (j = 0; j < 8; j++)
 		{
 			value = digitalRead(pinSetting.pinSerialIn);
 
@@ -45,10 +45,6 @@ void AtariJoystickController::init(PinSetting pinSetting, SnakeModel model)
 
 			//print switch's value
 			Serial.print(value);
-
-			//put a space after the first 8 bits
-			if (j == 7)
-				Serial.print(" ");
 		}
 
 		Serial.println("");
