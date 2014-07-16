@@ -17,44 +17,67 @@ void AtariJoystickController::init(PinSetting pinSetting, SnakeModel model)
 	pinMode(pinSetting.pinSerialIn, INPUT);
 	pinMode(pinSetting.pinCP, OUTPUT);
 	pinMode(pinSetting.pinPL, OUTPUT);
+
 	digitalWrite(pinSetting.pinPL, HIGH);
 	digitalWrite(pinSetting.pinCP, LOW);
 
 	Serial.begin(115200);
-	Serial.println("----------------");
-	int i;
-	int j;
-	int value;
 
-	//read the switches 10 times to prove
-	//that the system is stable
-	for (i = 0; i < 10; i++)
-	{
-		//load logic bits from the DIP switches
-		digitalWrite(pinSetting.pinPL, LOW);  //LOAD BITS
-		//reset "load" line, this freezes the internal buffer on both chips
-		digitalWrite(pinSetting.pinPL, HIGH);
+	
 
-		for (j = 0; j < 8; j++)
-		{
-			value = digitalRead(pinSetting.pinSerialIn);
+	////read the switches 10 times to prove
+	////that the system is stable
+	//for (i = 0; i < 10; i++)
+	//{
+	//	//load logic bits from the DIP switches
+	//	digitalWrite(pinSetting.pinPL, LOW);  //LOAD BITS
+	//	//reset "load" line, this freezes the internal buffer on both chips
+	//	digitalWrite(pinSetting.pinPL, HIGH);
 
-			//read next "switch"
-			digitalWrite(pinSetting.pinCP, HIGH);
-			digitalWrite(pinSetting.pinCP, LOW);
+	//	for (j = 0; j < 8; j++)
+	//	{
+	//		value = digitalRead(pinSetting.pinSerialIn);
 
-			//print switch's value
-			Serial.print(value);
-		}
+	//		//read next "switch"
+	//		digitalWrite(pinSetting.pinCP, HIGH);
+	//		digitalWrite(pinSetting.pinCP, LOW);
 
-		Serial.println("");
-		Serial.println("----------------");
-		delay(200);
-	}
+	//		//print switch's value
+	//		Serial.print(value);
+	//	}
+
+	//	Serial.println("");
+	//	Serial.println("----------------");
+	//	delay(200);
+	//}
 }
 
 void AtariJoystickController::update()
 {
+	Serial.println("----------------");
+	int i;
+	int j;
+	byte value;
+
+	//load logic bits from the DIP switches
+	//digitalWrite(pinSetting.pinPL, LOW);  //LOAD BITS
+	//reset "load" line, this freezes the internal buffer on both chips
+	digitalWrite(pinSetting.pinPL, HIGH);
+	value = shiftIn(pinSetting.pinSerialIn, pinSetting.pinCP, MSBFIRST);
+	digitalWrite(pinSetting.pinPL, LOW);
+	//for (j = 0; j < 8; j++)
+	//{
+	//	value = digitalRead(pinSetting.pinSerialIn);
+
+	//	//read next "switch"
+	//	digitalWrite(pinSetting.pinCP, HIGH);
+	//	digitalWrite(pinSetting.pinCP, LOW);
+	//	
+	//	//print switch's value
+	//	Serial.print(value);
+	//}
+	Serial.print(value);
+
 	/*buttonUpState = digitalRead(pinSetting.pinUp);
 	buttonDownState = digitalRead(pinSetting.pinDown);
 	buttonLeftState = digitalRead(pinSetting.pinLeft);
